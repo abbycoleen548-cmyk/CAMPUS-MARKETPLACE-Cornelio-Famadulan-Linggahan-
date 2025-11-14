@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f5f6f8;
+  color: #333;
+}
+
+/* --- NAVBAR --- */
+nav {
+  width: 100%;
+  background: rgba(45, 108, 223, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-size: 1.4rem;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  color: #ffd64d;
+}
+
+/* --- HERO BANNER --- */
+.hero {
+  width: 100%;
+  height: 220px;
+  background: url("https://via.placeholder.com/1200x220/2d6cdf/ffffff?text=Campus+Market+Deals") center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* --- CATEGORY SECTION --- */
+.categories {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.categories h2 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: #2d6cdf;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  text-align: center;
+}
+
+.cat {
+  background: #f8f9fc;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cat:hover {
+  background: #e3e9ff;
+}
+
+.cat img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+/* --- FEED LIKE FACEBOOK --- */
+.feed {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.post {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.post h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.price {
+  color: #2d6cdf;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.seller {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-order {
+  background: #2d6cdf;
+  color: white;
+}
+
+.btn-msg {
+  background: #ddd;
+  color: #333;
+}
