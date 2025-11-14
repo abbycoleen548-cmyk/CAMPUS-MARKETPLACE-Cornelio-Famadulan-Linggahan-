@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- ORDER BUTTONS ---
+  // --- Orde Button ---
   const orderButtons = document.querySelectorAll(".btn-order");
   orderButtons.forEach(button => {
     button.addEventListener("click", () => {
