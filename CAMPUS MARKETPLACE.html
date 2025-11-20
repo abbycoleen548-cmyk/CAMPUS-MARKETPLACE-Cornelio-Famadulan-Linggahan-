@@ -1,238 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campus Market</title>
-  <link rel="stylesheet" href="MARKETPLACEstyle.css">
 
+  <!-- Correct CSS link -->
+  <link rel="stylesheet" href="MARKETPLACEstyle.css">
+  <script src="MARKETPLACEscript.js" defer></script>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav>
     <h1>🎓 Campus Market</h1>
+    <div class="nav-right">
+      <input type="text" id="search-bar" placeholder="Search items...">
+      <button id="search-btn">🔍</button>
+      <button id="login-btn">Login/Signup</button>
+      <span id="notifications">🔔 <span id="notif-count">3</span></span>
+    </div>
     <ul>
-      <li><a href="#home">Home</a></li>
+      <li><a href="#home" class="active">Home</a></li>
       <li><a href="#categories">Categories</a></li>
       <li><a href="#orders">My Orders</a></li>
       <li><a href="#profile">Profile</a></li>
     </ul>
   </nav>
 
-  <!-- HERO BANNER -->
+  <!-- HERO -->
   <div class="hero">
-    Welcome to Campus Market 🎉
+    Welcome to Campus Market 🎉<br><small>Buy & Sell Campus Essentials</small>
   </div>
+
   <!-- CATEGORIES -->
   <div class="categories" id="categories">
     <h2>Browse by Category</h2>
     <div class="cat-grid">
-      <div class="cat"><img src="images/Books.jpg" alt=""><p>Books</p></div>
-      <div class="cat"><img src="images/SchoolSupplies.jpg" alt=""><p>School Supplies</p></div>
-      <div class="cat"><img src="images/Uniforms.jpg" alt=""><p>Uniforms</p></div>      <div class="cat"><img src="https://via.placeholder.com/60" alt=""><p>Electronics</p></div>
-      <div class="cat"><img src="https://via.placeholder.com/60" alt=""><p>Clothing</p></div>
-      <div class="cat"><img src="https://via.placeholder.com/60" alt=""><p>Sports Items</p></div>
-      <div class="cat"><img src="https://via.placeholder.com/60" alt=""><p>Food & Snacks</p></div>
-      <div class="cat"><img src="https://via.placeholder.com/60" alt=""><p>Others</p></div>
+      <div class="cat" data-category="Books"><img src="https://via.placeholder.com/60?text=📚"><p>Books</p></div>
+      <div class="cat" data-category="School Supplies"><img src="https://via.placeholder.com/60?text=✏️"><p>School Supplies</p></div>
+      <div class="cat" data-category="Uniforms"><img src="https://via.placeholder.com/60?text=👔"><p>Uniforms</p></div>
+      <div class="cat" data-category="Electronics"><img src="https://via.placeholder.com/60?text=💻"><p>Electronics</p></div>
+      <div class="cat" data-category="Clothing"><img src="https://via.placeholder.com/60?text=👕"><p>Clothing</p></div>
+      <div class="cat" data-category="Sports Items"><img src="https://via.placeholder.com/60?text=⚽"><p>Sports Items</p></div>
+      <div class="cat" data-category="Food & Snacks"><img src="https://via.placeholder.com/60?text=🍕"><p>Food & Snacks</p></div>
+      <div class="cat" data-category="Others"><img src="https://via.placeholder.com/60?text=🛒"><p>Others</p></div>
     </div>
   </div>
 
-  <!-- FACEBOOK STYLE FEED -->
-  <div class="feed" id="home">
-    <div class="post">  
-      <h3>Calculus Textbook</h3>
-      <p class="seller">Posted by Maria Santos</p>
-      <img src="https://via.placeholder.com/600x300" alt="">
-      <p class="price">₱350</p>
-      <p>Second-hand, good condition. Perfect for Math subjects.</p>
-      <div class="actions">
-        <button class="btn btn-order">Place Order</button>
-        <button class="btn btn-msg">Message Seller</button>
-      </div>
-    </div>
-
-    <div class="post">
-      <h3>Used Laptop</h3>
-      <p class="seller">Posted by Juan Dela Cruz</p>
-      <img src="https://via.placeholder.com/600x300" alt="">
-      <p class="price">₱15,000</p>
-      <p>Good for online classes and projects.</p>
-      <div class="actions">
-        <button class="btn btn-order">Place Order</button>
-        <button class="btn btn-msg">Message Seller</button>
-      </div>
+  <!-- TRENDING SECTION -->
+  <div class="trending">
+    <h2>🔥 Trending Now</h2>
+    <div class="trending-items">
+      <div class="trend-item">Calculus Textbook - ₱350</div>
+      <div class="trend-item">Used Laptop - ₱15,000</div>
+      <div class="trend-item">Basketball - ₱500</div>
     </div>
   </div>
 
-<script src="MARKETPLACEscript.js"></script>
+  <!-- FEED -->
+  <div class="feed" id="home"></div>
 
+  <!-- ITEM MODAL -->
+  <div id="item-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="item-details"></div>
+    </div>
+  </div>
+
+  <!-- RECEIPT MODAL -->
+  <div id="receipt-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Order Receipt</h2>
+      <div id="receipt-details"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Campus Market. <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Contact</a></p>
+  </footer>
+
+  <!-- Correct JS link -->
+  <script src="script.js"></script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campus Market</title>
-  <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
-
-    body {
-      background:#f5f6f8;
-      color:#333;
-    }
-
-  
-    nav {
-      width:100%;
-      background:rgba(45,108,223,0.9); /* light transparent blue */
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 20px;
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
-    nav h1 {
-      font-size:1.4rem;
-      color:white;
-    }
-    nav ul {
-      list-style:none;
-      display:flex;
-      gap:20px;
-    }
-    nav ul li a {
-      text-decoration:none;
-      color:white;
-      font-weight:500;
-    }
-    nav ul li a:hover {
-      color:#ffd64d;
-    }
-
-    /* --- HERO BANNER (like Shopee slider mockup) --- */
-    .hero {
-      width:100%;
-      height:220px;
-      background:url("https://via.placeholder.com/1200x220/2d6cdf/ffffff?text=Campus+Market+Deals") center/cover;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      color:white;
-      font-size:1.8rem;
-      font-weight:bold;
-    }
-
-    /* --- CATEGORY SECTION --- */
-    .categories {
-      background:white;
-      padding:20px;
-      margin:20px;
-      border-radius:10px;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-    }
-    .categories h2 {
-      margin-bottom:15px;
-      font-size:1.3rem;
-      color:#2d6cdf;
-    }
-    .cat-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
-      gap:15px;
-      text-align:center;
-    }
-    .cat {
-      background:#f8f9fc;
-      border-radius:10px;
-      padding:15px;
-      cursor:pointer;
-      transition:0.3s;
-    }
-    .cat:hover { background:#e3e9ff; }
-    .cat img {
-      width:60px; height:60px;
-      object-fit:contain;
-      margin-bottom:8px;
-    }
-
-    /* --- FEED LIKE FACEBOOK --- */
-    .feed {
-      max-width:900px;
-      margin:20px auto;
-    }
-    .post {
-      background:white;
-      padding:15px;
-      margin-bottom:15px;
-      border-radius:10px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    }
-    .post img {
-      width:100%; border-radius:10px; margin:10px 0;
-    }
-    .post h3 { font-size:1.1rem; margin-bottom:5px; }
-    .price { color:#2d6cdf; font-weight:bold; font-size:1rem; }
-    .seller { font-size:0.9rem; color:gray; }
-    .actions { margin-top:10px; display:flex; gap:10px; }
-    .btn {
-      padding:8px 12px;
-      border:none; border-radius:5px;
-      cursor:pointer; font-size:0.9rem;
-    }
-    .btn-order { background:#2d6cdf; color:white; }
-    .btn-msg { background:#ddd; color:#333; }
-  </style>
-</head>
-<body>
-
-  <!-- NAVBAR -->
-  <nav>
-    <h1>🎓 Campus Market</h1>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#categories">Categories</a></li>
-      <li><a href="#orders">My Orders</a></li>
-      <li><a href="#profile">Profile</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO BANNER -->
-  <div class="hero">
-    Welcome to Campus Market 🎉
-  </div>
-
-
-  <!-- FACEBOOK STYLE FEED -->
-  <div class="feed" id="home">
-    <div class="post">
-      <h3>Calculus Textbook</h3>
-      <p class="seller">Posted by Maria Santos</p>
-      <img src="https://via.placeholder.com/600x300" alt="">
-      <p class="price">₱350</p>
-      <p>Second-hand, good condition. Perfect for Math subjects.</p>
-      <div class="actions">
-        <button class="btn btn-order">Place Order</button>
-        <button class="btn btn-msg">Message Seller</button>
-      </div>
-    </div>
-
-    <div class="post">
-      <h3>Used Laptop</h3>
-      <p class="seller">Posted by Juan Dela Cruz</p>
-      <img src="https://via.placeholder.com/600x300" alt="">
-      <p class="price">₱15,000</p>
-      <p>Good for online classes and projects.</p>
-      <div class="actions">
-        <button class="btn btn-order">Place Order</button>
-        <button class="btn btn-msg">Message Seller</button>
-      </div>
-    </div>
-  </div>
-
-</body>
-</html>
-
