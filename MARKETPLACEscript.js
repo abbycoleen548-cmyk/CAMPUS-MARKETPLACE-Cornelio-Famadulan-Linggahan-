@@ -1,5 +1,56 @@
 // Wait until the page fully loads
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===================== AUTHENTICATION SCREEN ===================== */
+  const authScreen = document.getElementById('auth-screen');
+  const mainWebsite = document.getElementById('main-website');
+  const loginBtnAuth = document.getElementById('login-btn-auth');
+  const signupBtnAuth = document.getElementById('signup-btn-auth');
+  const authForm = document.getElementById('auth-form');
+  const authTitle = document.getElementById('auth-title');
+  const toggleLink = document.getElementById('toggle-link');
+
+  let isLogin = true;
+
+  function showForm() {
+    authForm.classList.remove('hidden');
+    loginBtnAuth.classList.add('hidden');
+    signupBtnAuth.classList.add('hidden');
+    authTitle.textContent = isLogin ? "Login" : "Sign Up";
+    toggleLink.textContent = isLogin ? "Sign Up" : "Login";
+  }
+
+  loginBtnAuth.addEventListener('click', () => {
+    isLogin = true;
+    showForm();
+  });
+
+  signupBtnAuth.addEventListener('click', () => {
+    isLogin = false;
+    showForm();
+  });
+
+  toggleLink.addEventListener('click', () => {
+    isLogin = !isLogin;
+    authTitle.textContent = isLogin ? "Login" : "Sign Up";
+    toggleLink.textContent = isLogin ? "Sign Up" : "Login";
+  });
+
+  authForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if(username && password) {
+      alert(isLogin ? `Logged in as ${username}` : `Account created for ${username}`);
+      authScreen.classList.add('hidden');
+      mainWebsite.classList.remove('hidden');
+    } else {
+      alert('Please fill in all fields!');
+    }
+  });
+
+  /* ===================== MAIN WEBSITE CODE ===================== */
   const feed = document.getElementById('home');
   const searchBar = document.getElementById('search-bar');
   const searchBtn = document.getElementById('search-btn');
@@ -11,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById('login-btn');
   const notifications = document.getElementById('notifications');
 
-  // Sample posts data (expandable)
+  // Sample posts data
   const postsData = [
     {
       title: "Calculus Textbook",
@@ -86,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     data.forEach(post => {
       const postEl = document.createElement('div');
       postEl.className = 'post';
-      postEl.dataset.category = post.category; // For filtering
+      postEl.dataset.category = post.category;
       postEl.innerHTML = `
         <div class="seller">
           <img src="${post.avatar}" alt="${post.seller}">
@@ -108,56 +159,47 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       feed.appendChild(postEl);
 
-      // Click to open item modal (but ignore clicks on buttons)
-      postEl.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('btn')) {
-          openItemModal(post);
-        }
+      // Open item modal on click (except buttons)
+      postEl.addEventListener('click', e => {
+        if (!e.target.classList.contains('btn')) openItemModal(post);
       });
 
-      // Button event listeners
-      const likeBtn = postEl.querySelector('.btn-like');
-      likeBtn.addEventListener('click', (e) => {
+      // Button events
+      postEl.querySelector('.btn-like').addEventListener('click', e => {
         e.stopPropagation();
         post.likes++;
-        likeBtn.textContent = `👍 Like (${post.likes})`;
+        e.target.textContent = `👍 Like (${post.likes})`;
         alert('Liked!');
       });
 
-      const commentBtn = postEl.querySelector('.btn-comment');
-      commentBtn.addEventListener('click', e => {
+      postEl.querySelector('.btn-comment').addEventListener('click', e => {
         e.stopPropagation();
         const comment = prompt('Add a comment:');
-        if (comment) alert(`Comment added: "${comment}"`);
+        if(comment) alert(`Comment added: "${comment}"`);
       });
 
-      const shareBtn = postEl.querySelector('.btn-share');
-      shareBtn.addEventListener('click', e => {
+      postEl.querySelector('.btn-share').addEventListener('click', e => {
         e.stopPropagation();
         alert('Shared on social media!');
       });
 
-      const cartBtn = postEl.querySelector('.btn-cart');
-      cartBtn.addEventListener('click', e => {
+      postEl.querySelector('.btn-cart').addEventListener('click', e => {
         e.stopPropagation();
         alert(`Added "${post.title}" to cart!`);
       });
 
-      const orderBtn = postEl.querySelector('.btn-order');
-      orderBtn.addEventListener('click', e => {
+      postEl.querySelector('.btn-order').addEventListener('click', e => {
         e.stopPropagation();
         openReceiptModal(post);
       });
 
-      const msgBtn = postEl.querySelector('.btn-msg');
-      msgBtn.addEventListener('click', e => {
+      postEl.querySelector('.btn-msg').addEventListener('click', e => {
         e.stopPropagation();
         alert(`Messaging ${post.seller}...`);
       });
     });
   }
 
-  // Open item modal
   function openItemModal(post) {
     const details = document.getElementById('item-details');
     details.innerHTML = `
@@ -171,14 +213,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     modal.style.display = 'flex';
 
-    // Buy Now button in modal
     details.querySelector('.btn-order').addEventListener('click', () => {
       modal.style.display = 'none';
       openReceiptModal(post);
     });
   }
 
-  // Open receipt modal
   function openReceiptModal(post) {
     const details = document.getElementById('receipt-details');
     details.innerHTML = `
@@ -192,14 +232,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Close modals
-  closeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      modal.style.display = 'none';
-      receiptModal.style.display = 'none';
-    });
-  });
+  closeBtns.forEach(btn => btn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    receiptModal.style.display = 'none';
+  }));
 
-  // Search functionality
+  // Search
   searchBtn.addEventListener('click', () => {
     const query = searchBar.value.toLowerCase();
     const filtered = postsData.filter(post =>
@@ -207,11 +245,11 @@ document.addEventListener("DOMContentLoaded", () => {
       post.seller.toLowerCase().includes(query) ||
       post.category.toLowerCase().includes(query)
     );
-    feed.innerHTML = ''; // Clear feed
+    feed.innerHTML = '';
     loadPosts(filtered);
   });
 
-  // Category filtering
+  // Category filter
   categories.forEach(cat => {
     cat.addEventListener('click', () => {
       const category = cat.dataset.category;
@@ -230,17 +268,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Login button
-  loginBtn.addEventListener('click', () => {
-    alert('Login/Signup modal would open here!');
-  });
+  // Login & notifications buttons
+  loginBtn.addEventListener('click', () => alert('Login/Signup modal would open here!'));
+  notifications.addEventListener('click', () => alert('You have 3 new notifications!'));
 
-  // Notifications
-  notifications.addEventListener('click', () => {
-    alert('You have 3 new notifications!');
-  });
-
-  // Infinite scroll to load more posts when near bottom
+  // Infinite scroll
   window.addEventListener('scroll', () => {
     if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
       if (loadedPosts < currentPosts.length) {
@@ -248,15 +280,10 @@ document.addEventListener("DOMContentLoaded", () => {
         loadedPosts += 5;
       }
     }
+
+    // Navbar background change
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50 ? "rgba(45,108,223,1)" : "rgba(45,108,223,0.9)";
   });
 
-  // Navbar background changes on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-      nav.style.background = "rgba(45,108,223,1)";
-    } else {
-      nav.style.background = "rgba(45,108,223,0.9)";
-    }
-  });
 });

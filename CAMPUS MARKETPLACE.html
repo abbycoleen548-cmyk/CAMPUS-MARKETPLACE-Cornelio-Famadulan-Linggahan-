@@ -5,87 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campus Market</title>
 
-  <!-- Correct CSS link -->
   <link rel="stylesheet" href="MARKETPLACEstyle.css">
   <script src="MARKETPLACEscript.js" defer></script>
-
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <h1>🎓 Campus Market</h1>
-    <div class="nav-right">
-      <input type="text" id="search-bar" placeholder="Search items...">
-      <button id="search-btn">🔍</button>
-      <button id="login-btn">Login/Signup</button>
-      <span id="notifications">🔔 <span id="notif-count">3</span></span>
-    </div>
-    <ul>
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#categories">Categories</a></li>
-      <li><a href="#orders">My Orders</a></li>
-      <li><a href="#profile">Profile</a></li>
-    </ul>
-  </nav>
+  <!-- AUTH MODAL / LOGIN & SIGNUP -->
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-box">
+      <h2>Welcome to Campus Market 🎓</h2>
+      <div class="auth-buttons">
+        <button id="login-btn-auth">Login</button>
+        <button id="signup-btn-auth">Sign Up</button>
+      </div>
 
-  <!-- HERO -->
-  <div class="hero">
-    Welcome to Campus Market 🎉<br><small>Buy & Sell Campus Essentials</small>
-  </div>
-
-  <!-- CATEGORIES -->
-  <div class="categories" id="categories">
-    <h2>Browse by Category</h2>
-    <div class="cat-grid">
-      <div class="cat" data-category="Books"><img src="https://via.placeholder.com/60?text=📚"><p>Books</p></div>
-      <div class="cat" data-category="School Supplies"><img src="https://via.placeholder.com/60?text=✏️"><p>School Supplies</p></div>
-      <div class="cat" data-category="Uniforms"><img src="https://via.placeholder.com/60?text=👔"><p>Uniforms</p></div>
-      <div class="cat" data-category="Electronics"><img src="https://via.placeholder.com/60?text=💻"><p>Electronics</p></div>
-      <div class="cat" data-category="Clothing"><img src="https://via.placeholder.com/60?text=👕"><p>Clothing</p></div>
-      <div class="cat" data-category="Sports Items"><img src="https://via.placeholder.com/60?text=⚽"><p>Sports Items</p></div>
-      <div class="cat" data-category="Food & Snacks"><img src="https://via.placeholder.com/60?text=🍕"><p>Food & Snacks</p></div>
-      <div class="cat" data-category="Others"><img src="https://via.placeholder.com/60?text=🛒"><p>Others</p></div>
+      <form id="auth-form" class="hidden">
+        <h3 id="auth-title">Login</h3>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" id="submit-auth">Submit</button>
+        <p id="toggle-auth">Don't have an account? <span id="toggle-link">Sign Up</span></p>
+      </form>
     </div>
   </div>
 
-  <!-- TRENDING SECTION -->
-  <div class="trending">
-    <h2>🔥 Trending Now</h2>
-    <div class="trending-items">
-      <div class="trend-item">Calculus Textbook - ₱350</div>
-      <div class="trend-item">Used Laptop - ₱15,000</div>
-      <div class="trend-item">Basketball - ₱500</div>
+  <!-- MAIN WEBSITE -->
+  <div id="main-website" class="hidden">
+    <!-- NAVBAR -->
+    <nav>
+      <h1>🎓 Campus Market</h1>
+      <div class="nav-right">
+        <input type="text" id="search-bar" placeholder="Search items...">
+        <button id="search-btn">🔍</button>
+        <button id="login-btn">Login/Signup</button>
+        <span id="notifications">🔔 <span id="notif-count">3</span></span>
+      </div>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#orders">My Orders</a></li>
+        <li><a href="#profile">Profile</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO, Categories, Feed, etc. -->
+    <div class="hero">
+      Welcome to Campus Market 🎉<br><small>Buy & Sell Campus Essentials</small>
     </div>
+    <div class="categories" id="categories">
+      <h2>Browse by Category</h2>
+      <div class="cat-grid">
+        <div class="cat" data-category="Books"><img src="https://via.placeholder.com/60?text=📚"><p>Books</p></div>
+        <div class="cat" data-category="School Supplies"><img src="https://via.placeholder.com/60?text=✏️"><p>School Supplies</p></div>
+        <div class="cat" data-category="Uniforms"><img src="https://via.placeholder.com/60?text=👔"><p>Uniforms</p></div>
+        <div class="cat" data-category="Electronics"><img src="https://via.placeholder.com/60?text=💻"><p>Electronics</p></div>
+        <div class="cat" data-category="Clothing"><img src="https://via.placeholder.com/60?text=👕"><p>Clothing</p></div>
+        <div class="cat" data-category="Sports Items"><img src="https://via.placeholder.com/60?text=⚽"><p>Sports Items</p></div>
+        <div class="cat" data-category="Food & Snacks"><img src="https://via.placeholder.com/60?text=🍕"><p>Food & Snacks</p></div>
+        <div class="cat" data-category="Others"><img src="https://via.placeholder.com/60?text=🛒"><p>Others</p></div>
+      </div>
+    </div>
+
+    <div class="feed" id="home"></div>
+
+    <footer>
+      <p>&copy; 2023 Campus Market. <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Contact</a></p>
+    </footer>
   </div>
 
-  <!-- FEED -->
-  <div class="feed" id="home"></div>
-
-  <!-- ITEM MODAL -->
-  <div id="item-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div id="item-details"></div>
-    </div>
-  </div>
-
-  <!-- RECEIPT MODAL -->
-  <div id="receipt-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Order Receipt</h2>
-      <div id="receipt-details"></div>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2023 Campus Market. <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Contact</a></p>
-  </footer>
-
-  <!-- Correct JS link -->
+  <script src="MARKETPLACEscript.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
