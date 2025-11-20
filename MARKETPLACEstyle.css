@@ -7,14 +7,14 @@
 }
 
 body {
-  background: #f5f6f8;
+  background: #e9f7ec; /* light green background */
   color: #333;
 }
 
 /* NAVBAR */
 nav {
   width: 100%;
-  background: rgba(45, 108, 223, 0.9);
+  background: linear-gradient(90deg, #0b5d1e, #2f8f3f); /* green gradient */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,14 +69,15 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: #ffd64d;
+  color: #a6e8b4; /* light green accent */
 }
 
 /* HERO */
 .hero {
   width: 100%;
   height: 220px;
-  background: url("https://via.placeholder.com/1200x220/2d6cdf/ffffff?text=Campus+Market+Deals") center/cover;
+  background: linear-gradient(rgba(11,93,30,0.6), rgba(47,143,63,0.6)),
+              url("https://via.placeholder.com/1200x220/0b5d1e/ffffff?text=Campus+Market+Deals") center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +99,7 @@ nav ul li a.active {
 .categories h2 {
   margin-bottom: 15px;
   font-size: 1.3rem;
-  color: #2d6cdf;
+  color: #0b5d1e;
 }
 
 .cat-grid {
@@ -109,7 +110,7 @@ nav ul li a.active {
 }
 
 .cat {
-  background: #f8f9fc;
+  background: #e9f7ec; /* soft light green */
   border-radius: 10px;
   padding: 15px;
   cursor: pointer;
@@ -117,7 +118,7 @@ nav ul li a.active {
 }
 
 .cat:hover {
-  background: #e3e9ff;
+  background: #a6e8b4; /* brighter green hover */
 }
 
 .cat img {
@@ -143,7 +144,7 @@ nav ul li a.active {
 }
 
 .trend-item {
-  background: #e3e9ff;
+  background: #a6e8b4;
   padding: 10px;
   border-radius: 5px;
   white-space: nowrap;
@@ -176,7 +177,7 @@ nav ul li a.active {
 }
 
 .price {
-  color: #2d6cdf;
+  color: #0b5d1e;
   font-weight: bold;
   font-size: 1rem;
 }
@@ -206,27 +207,13 @@ nav ul li a.active {
   color: gray;
 }
 
-.actions {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
+/* ACTION BUTTONS */
 .btn-like { background: #ff6b6b; color: white; }
 .btn-comment { background: #4ecdc4; color: white; }
 .btn-share { background: #45b7d1; color: white; }
-.btn-order { background: #2d6cdf; color: white; }
+.btn-order { background: #0b5d1e; color: white; }
 .btn-msg { background: #ddd; color: #333; }
-.btn-cart { background: #ffa726; color: white; }
+.btn-cart { background: #2f8f3f; color: white; }
 
 /* MODALS */
 .modal {
@@ -265,7 +252,7 @@ nav ul li a.active {
 
 /* FOOTER */
 footer {
-  background: #2d6cdf;
+  background: linear-gradient(90deg, #0b5d1e, #2f8f3f);
   color: white;
   text-align: center;
   padding: 10px;
@@ -276,4 +263,3 @@ footer a {
   color: #ffd64d;
   text-decoration: none;
 }
-  
