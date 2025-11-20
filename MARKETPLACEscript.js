@@ -1,5 +1,5 @@
+// Wait until the page fully loads
 document.addEventListener("DOMContentLoaded", () => {
-
   const feed = document.getElementById('home');
   const searchBar = document.getElementById('search-bar');
   const searchBtn = document.getElementById('search-btn');
@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll('nav ul li a');
   const loginBtn = document.getElementById('login-btn');
   const notifications = document.getElementById('notifications');
-
 
   // Sample posts data (expandable)
   const postsData = [
@@ -109,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       feed.appendChild(postEl);
 
-      // Click to open item modal (fixed: now complete)
+      // Click to open item modal (but ignore clicks on buttons)
       postEl.addEventListener('click', (e) => {
         if (!e.target.classList.contains('btn')) {
           openItemModal(post);
@@ -118,35 +117,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Button event listeners
       const likeBtn = postEl.querySelector('.btn-like');
-      likeBtn.addEventListener('click', () => {
+      likeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         post.likes++;
         likeBtn.textContent = `👍 Like (${post.likes})`;
         alert('Liked!');
       });
 
       const commentBtn = postEl.querySelector('.btn-comment');
-      commentBtn.addEventListener('click', () => {
+      commentBtn.addEventListener('click', e => {
+        e.stopPropagation();
         const comment = prompt('Add a comment:');
         if (comment) alert(`Comment added: "${comment}"`);
       });
 
       const shareBtn = postEl.querySelector('.btn-share');
-      shareBtn.addEventListener('click', () => {
+      shareBtn.addEventListener('click', e => {
+        e.stopPropagation();
         alert('Shared on social media!');
       });
 
       const cartBtn = postEl.querySelector('.btn-cart');
-      cartBtn.addEventListener('click', () => {
+      cartBtn.addEventListener('click', e => {
+        e.stopPropagation();
         alert(`Added "${post.title}" to cart!`);
       });
 
       const orderBtn = postEl.querySelector('.btn-order');
-      orderBtn.addEventListener('click', () => {
+      orderBtn.addEventListener('click', e => {
+        e.stopPropagation();
         openReceiptModal(post);
       });
 
       const msgBtn = postEl.querySelector('.btn-msg');
-      msgBtn.addEventListener('click', () => {
+      msgBtn.addEventListener('click', e => {
+        e.stopPropagation();
         alert(`Messaging ${post.seller}...`);
       });
     });
@@ -164,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><strong>Caption:</strong> ${post.caption}</p>
       <button class="btn btn-order">Buy Now</button>
     `;
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
 
     // Buy Now button in modal
     details.querySelector('.btn-order').addEventListener('click', () => {
@@ -183,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p><strong>Order Date:</strong> ${new Date().toLocaleString()}</p>
       <p>Thank you for your purchase! Receipt sent to your email.</p>
     `;
-    receiptModal.style.display = 'block';
+    receiptModal.style.display = 'flex';
   }
 
   // Close modals
@@ -235,9 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
     alert('You have 3 new notifications!');
   });
 
-  // Infinite scroll
+  // Infinite scroll to load more posts when near bottom
   window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
       if (loadedPosts < currentPosts.length) {
         loadPosts(currentPosts.slice(loadedPosts, loadedPosts + 5));
         loadedPosts += 5;
@@ -245,13 +250,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Navbar background on scroll
+  // Navbar background changes on scroll
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     if (window.scrollY > 50) {
-      nav.style.background = 'rgba(45,108,223,1)';
+      nav.style.background = "rgba(45,108,223,1)";
     } else {
-      nav.style.background = 'rgba(45,108,223,0.9)';
+      nav.style.background = "rgba(45,108,223,0.9)";
     }
   });
 });
