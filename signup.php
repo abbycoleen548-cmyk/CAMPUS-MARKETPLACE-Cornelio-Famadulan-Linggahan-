@@ -5,6 +5,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+if ($conn) {
+    echo "CONNECTED TO DATABASE!";
+} else {
+    echo "FAILED TO CONNECT.";
+}
+
+
 $full_name = $_POST['full_name'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
