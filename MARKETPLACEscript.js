@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // PRODUCTS
 const products = [
   {title:'Scientific Calculator',price:'₱450',img:'https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg'},
@@ -82,4 +83,29 @@ loginForm.addEventListener('submit', (e) => {
 document.getElementById('logout-btn').addEventListener('click', () => {
   mainContent.style.display = 'none';
   authModal.style.display = 'flex';
+=======
+document.getElementById("login-btn-auth").addEventListener("click", () => {
+  document.getElementById("auth-form").classList.remove("hidden");
+  document.getElementById("auth-title").textContent = "Login";
+});
+
+document.getElementById("signup-btn-auth").addEventListener("click", () => {
+  document.getElementById("auth-form").classList.remove("hidden");
+  document.getElementById("auth-title").textContent = "Sign Up";
+  document.getElementById("toggle-link").textContent = "Login";
+});
+
+// TOGGLE LOGIN <-> SIGNUP
+document.getElementById("toggle-link").addEventListener("click", () => {
+  const title = document.getElementById("auth-title").textContent;
+  document.getElementById("auth-title").textContent =
+    title === "Login" ? "Sign Up" : "Login";
+});
+
+// SUBMIT LOGIN FORM -> SHOW WEBSITE
+document.getElementById("auth-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  document.getElementById("auth-screen").style.display = "none";
+  document.getElementById("main-website").classList.remove("hidden");
+>>>>>>> 8d0d995c8152762a25eced89d52d9a168be0f545
 });

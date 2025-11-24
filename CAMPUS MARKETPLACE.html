@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+<<<<<<< HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Campus Market</title>
 
@@ -32,6 +33,30 @@
         <h2 id="auth-title">Welcome Back!</h2>
         <p id="auth-sub">Sign in to access your account and campus deals.</p>
         <button id="toggle-auth" class="cta">Switch to Sign Up</button>
+=======
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Market | SLSU Lucena</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="MARKETPLACEstyle.css">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- JS -->
+  <script src="MARKETPLACEscript.js" defer></script>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-box">
+      <img src="IMAGES/slsu logo.png" class="login-logo">
+      <h2>Welcome to SLSU Lucena Campus Market 🎓</h2>
+      <div class="auth-buttons">
+        <button id="login-btn-auth">Login</button>
+        <button id="signup-btn-auth">Sign Up</button>
+>>>>>>> 8d0d995c8152762a25eced89d52d9a168be0f545
       </div>
       <div class="auth-right">
         <!-- Login Form -->
@@ -53,6 +78,7 @@
   </div>
 
   <!-- MAIN WEBSITE -->
+<<<<<<< HEAD
   <div id="main-content" style="display:none;">
     <!-- TOP BAR -->
     <div class="topbar">
@@ -116,5 +142,65 @@
 
   <!-- JS -->
   <script src="MARKETPLACEscript.js"></script>
+=======
+  <div id="main-website" class="hidden">
+
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-brand">
+        <h1>SLSU Lucena Campus Market</h1>
+      </div>
+      <div class="nav-right">
+        <input type="text" id="search-bar" placeholder="Search items...">
+        <button id="search-btn">🔍</button>
+        <button id="logout-btn">Logout</button>
+        <span id="notifications">🔔 <span id="notif-count">3</span></span>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      Welcome to <strong>SLSU Lucena Campus Market</strong> 🎓<br>
+      <small>Buy & Sell Campus Essentials</small>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="categories" id="categories">
+      <h2>Browse by Category</h2>
+      <div class="cat-grid">
+        <div class="cat"><img src="IMAGES/Books.jpg=📚"><p>Books</p></div>
+        <div class="cat"><img src="IMAGES/clothing.jpg=👕"><p>clothing</p></div>
+        <div class="cat"><img src="IMAGES/electronics.jpg=💻"><p>electronics</p></div>
+        <div class="cat"><img src="IMAGES/SchoolSupplies.jpg=🎒"><p>SchoolSupplies</p></div>
+        <div class="cat"><img src="IMAGES/Uniforms.jpg=👔"><p>Uniforms</p></div>
+        <div class="cat"><img src="IMAGES/foods.jpg=🍕"><p>foods</p></div>
+        <div class="cat"><img src="IMAGES/sports.jpg=⚽"><p>sports</p></div>
+        <div class="cat"><img src="IMAGES/others.jpg=🛒"><p>Others</p></div>
+      </div>
+    </div>
+
+    <!-- FEED -->
+    <div class="feed" id="home">
+      <div class="post">
+        <h3>Calculus Textbook</h3>
+        <p class="seller">Posted by Maria Santos</p>
+        <img src="https://via.placeholder.com/600x300" alt="">
+        <p class="price">₱350</p>
+        <p class="caption">Second-hand, good condition. Perfect for Math subjects.</p>
+        <div class="actions">
+          <button class="btn btn-order">Order</button>
+          <button class="btn btn-msg">Message</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER with Lucena Campus Logo -->
+    <footer>
+      <img src="images/slsu lucena logo (1).png" class="footer-logo">
+      <p>© 2024 SLSU Lucena Campus Market. All rights reserved.</p>
+    </footer>
+
+  </div>
+>>>>>>> 8d0d995c8152762a25eced89d52d9a168be0f545
 </body>
 </html>
