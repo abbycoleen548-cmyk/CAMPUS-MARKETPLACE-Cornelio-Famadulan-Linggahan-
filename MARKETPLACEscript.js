@@ -1,111 +1,123 @@
-<<<<<<< HEAD
-// PRODUCTS
-const products = [
-  {title:'Scientific Calculator',price:'₱450',img:'https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg'},
-  {title:'Laptop Backpack',price:'₱900',img:'https://images.pexels.com/photos/374748/pexels-photo-374748.jpeg'},
-  {title:'Wireless Earbuds',price:'₱799',img:'https://images.pexels.com/photos/7156889/pexels-photo-7156889.jpeg'},
-  {title:'Notebook Set (5 pcs)',price:'₱120',img:'https://images.pexels.com/photos/461077/pexels-photo-461077.jpeg'},
-  {title:'iPad for Study',price:'₱14,990',img:'https://images.pexels.com/photos/3990842/pexels-photo-3990842.jpeg'},
-  {title:'Dorm Lamp',price:'₱350',img:'https://images.pexels.com/photos/269235/pexels-photo-269235.jpeg'},
-  {title:'Reusable Water Bottle',price:'₱180',img:'https://images.pexels.com/photos/1661438/pexels-photo-1661438.jpeg'},
-  {title:'Second-Hand Books',price:'₱200',img:'https://images.pexels.com/photos/1029774/pexels-photo-1029774.jpeg'}
-];
+// GET ELEMENTS
+const authModal = document.getElementById("auth-modal");
+const mainContent = document.getElementById("main-content");
+const loginForm = document.getElementById("login-form");
+const signupForm = document.getElementById("signup-form");
+const toggleAuth = document.getElementById("toggle-auth");
+const usernameDisplay = document.querySelector(".username");
+const popup = document.getElementById("popup-success");
+const popupText = document.getElementById("popup-text");
+const popupClose = document.getElementById("popup-close");
 
+// TOGGLE LOGIN / SIGN UP
+toggleAuth.addEventListener("click", () => {
+  const isLoginVisible = loginForm.style.display !== "none";
 
-const grid = document.getElementById('product-grid');
-const authModal = document.getElementById('auth-modal');
-const mainContent = document.getElementById('main-content');
-const loginForm = document.getElementById('login-form');
-const signupForm = document.getElementById('signup-form');
-const toggleAuth = document.getElementById('toggle-auth');
-const usernameDisplay = document.querySelector('.username');
+  loginForm.style.display = isLoginVisible ? "none" : "flex";
+  signupForm.style.display = isLoginVisible ? "flex" : "none";
+  toggleAuth.innerText = isLoginVisible ? "Switch to Login" : "Switch to Sign Up";
+});
 
-// --------------------- RENDER PRODUCTS ---------------------
-function renderProducts(productsList) {
-  grid.innerHTML = '';
-  productsList.forEach(p => {
-    const el = document.createElement('div');
-    el.className = 'card';
-    el.innerHTML = `
-      <img src="${p.img}">
-      <h4>${p.title}</h4>
-      <div class='price'>${p.price}</div>
-      <button class='addbtn'>Add to cart</button>
-    `;
-    grid.appendChild(el);
-  });
+// SHOW POPUP MESSAGE
+function showPopup(message) {
+  popupText.textContent = message;
+  popup.style.display = "flex";
 }
-renderProducts(products);
-
-// --------------------- TOGGLE LOGIN / SIGNUP ---------------------
-toggleAuth.addEventListener('click', () => {
-  if (loginForm.style.display !== 'none') {
-    loginForm.style.display = 'none';
-    signupForm.style.display = 'flex';
-    toggleAuth.innerText = 'Switch to Login';
-  } else {
-    loginForm.style.display = 'flex';
-    signupForm.style.display = 'none';
-    toggleAuth.innerText = 'Switch to Sign Up';
-  }
+popupClose.addEventListener("click", () => {
+  popup.style.display = "none";
 });
 
-// --------------------- SIGNUP ---------------------
-signupForm.addEventListener('submit', (e) => {
+// SIGNUP
+signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = document.getElementById('signup-name').value;
-  const email = document.getElementById('signup-email').value;
-  const pass = document.getElementById('signup-pass').value;
+  const name = document.getElementById("signup-name").value;
+  const email = document.getElementById("signup-email").value;
+  const pass = document.getElementById("signup-pass").value;
 
-  localStorage.setItem('user', JSON.stringify({name, email, pass}));
-  alert('Account created! Now login.');
+  localStorage.setItem("user", JSON.stringify({ name, email, pass }));
   signupForm.reset();
-  toggleAuth.click(); // back to login
+  showPopup("Account created! Please login.");
+  toggleAuth.click();  // switch to login
 });
 
-// --------------------- LOGIN ---------------------
-loginForm.addEventListener('submit', (e) => {
+// LOGIN
+loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const email = document.getElementById('login-email').value;
-  const pass = document.getElementById('login-pass').value;
-  const user = JSON.parse(localStorage.getItem('user'));
+  const email = document.getElementById("login-email").value;
+  const pass = document.getElementById("login-pass").value;
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (user && user.email === email && user.pass === pass) {
-    authModal.style.display = 'none';
-    mainContent.style.display = 'block';
+    authModal.style.display = "none";
+    mainContent.style.display = "block";
     usernameDisplay.textContent = `👋 Hello, ${user.name}`;
   } else {
-    alert('Wrong email or password!');
+    showPopup("❌ Wrong Email or Password!");
   }
 });
 
-// --------------------- LOGOUT ---------------------
-document.getElementById('logout-btn').addEventListener('click', () => {
-  mainContent.style.display = 'none';
-  authModal.style.display = 'flex';
-=======
-document.getElementById("login-btn-auth").addEventListener("click", () => {
-  document.getElementById("auth-form").classList.remove("hidden");
-  document.getElementById("auth-title").textContent = "Login";
-});
+// LOGOUT
+document.getElementById("logout-btn").addEventListener("click", () => {
+  authModal.style.display = "flex";
+  mainContent.style.display = "none";
 
-document.getElementById("signup-btn-auth").addEventListener("click", () => {
-  document.getElementById("auth-form").classList.remove("hidden");
-  document.getElementById("auth-title").textContent = "Sign Up";
-  document.getElementById("toggle-link").textContent = "Login";
-});
-
-// TOGGLE LOGIN <-> SIGNUP
-document.getElementById("toggle-link").addEventListener("click", () => {
-  const title = document.getElementById("auth-title").textContent;
-  document.getElementById("auth-title").textContent =
-    title === "Login" ? "Sign Up" : "Login";
-});
-
-// SUBMIT LOGIN FORM -> SHOW WEBSITE
-document.getElementById("auth-form").addEventListener("submit", (e) => {
+// SIGNUP
+signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  document.getElementById("auth-screen").style.display = "none";
-  document.getElementById("main-website").classList.remove("hidden");
->>>>>>> 8d0d995c8152762a25eced89d52d9a168be0f545
+
+  const name = document.getElementById("signup-name").value;
+  const email = document.getElementById("signup-email").value;
+  const pass = document.getElementById("signup-pass").value;
+
+  let formData = new FormData();
+  formData.append("full_name", name);
+  formData.append("email", email);
+  formData.append("password", pass);
+
+  fetch("signup.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    if (data === "success") {
+      showPopup("Account Created! Please Login.");
+      toggleAuth.click();
+    } else {
+      showPopup("❌ Email already exists.");
+    }
+  });
+});
+
+// LOGIN
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("login-email").value;
+  const pass = document.getElementById("login-pass").value;
+
+  let formData = new FormData();
+  formData.append("email", email);
+  formData.append("password", pass);
+
+  fetch("login.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    if (data.startsWith("success")) {
+      let user = data.split("|")[1];
+      usernameDisplay.textContent = `👋 Hello, ${user}`;
+      authModal.style.display = "none";
+      mainContent.style.display = "block";
+    } else if (data === "wrong_pass") {
+      showPopup("❌ Wrong Password!");
+    } else {
+      showPopup("❌ No Account Found!");
+    }
+  });
+});
+
+
 });
