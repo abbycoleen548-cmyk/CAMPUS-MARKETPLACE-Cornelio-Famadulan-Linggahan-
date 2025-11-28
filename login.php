@@ -1,21 +1,27 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "campus_market");
+require "db_connect.php";
 
 $email = $_POST['email'];
-$password = $_POST['password'];
+$pass = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE email = '$email'";
-$result = mysqli_query($conn, $sql);
+$sql = "SELECT * FROM users WHERE email=?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if (mysqli_num_rows($result) == 1) {
-    $user = mysqli_fetch_assoc($result);
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
 
-    if (password_verify($password, $user['password'])) {
+    if (password_verify($pass, $user['password'])) {
         echo "success|" . $user['full_name'];
     } else {
         echo "wrong_pass";
     }
 } else {
-    echo "no_user";
+    echo "no_account";
 }
+
+$stmt->close();
+$conn->close();
 ?>

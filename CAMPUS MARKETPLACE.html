@@ -13,80 +13,198 @@
 </head>
 <body>
 
-<!-- 🔰 AUTH MODAL -->
-<div class="auth-modal" id="auth-modal">
-  <div class="auth-card">
+  <!-- AUTH MODAL -->
+  <div class="auth-modal" id="auth-modal">
+    <div class="auth-card">
+      <!-- LEFT SIDE -->
+      <div class="auth-left">
+        <img src="images/logo.jpg" class="auth-logo" alt="School Logo">
+        <h2 id="auth-title">Welcome Back, Student!</h2>
+        <p id="auth-sub">Log in to access exclusive campus deals.</p>
+        <button id="toggle-auth" class="cta">Switch to Sign Up</button>
+      </div>
 
+      <!-- RIGHT SIDE -->
+      <div class="auth-right">
+        <!-- LOGIN FORM -->
+        <form class="auth-form" id="login-form">
+          <input id="login-email" name="email" type="email" placeholder="Email" required>
+          <input id="login-pass" name="password" type="password" placeholder="Password" required>
+          <button type="submit" class="cta full">Login</button>
+        </form>
 
-<!-- POPUP SUCCESS MESSAGE -->
-<div id="popup-success" class="popup">
-  <div class="popup-box">
-    <p id="popup-text"></p>
-    <button id="popup-close" class="cta">OK</button>
-  </div>
-</div>
-
-
-    <!-- LEFT SIDE -->
-    <div class="auth-left">
-      <img src="images/logo.jpg" class="auth-logo"> <!-- Your School Logo -->
-      <h2 id="auth-title">Welcome Back, Student!</h2>
-      <p id="auth-sub">Log in to access exclusive campus deals.</p>
-      <button id="toggle-auth" class="cta">Switch to Sign Up</button>
-    </div>
-
-    <!-- RIGHT SIDE -->
-    <div class="auth-right">
-      <!-- LOGIN FORM -->
-      <form class="auth-form" id="login-form">
-        <input id="login-email" type="email" placeholder="Email" required>
-        <input id="login-pass" type="password" placeholder="Password" required>
-        <button type="submit" class="cta full">Login</button>
-      </form>
-
-      <!-- SIGNUP FORM -->
-      <form class="auth-form" id="signup-form" style="display:none;">
-        <input id="signup-name" type="text" placeholder="Full Name" required>
-        <input id="signup-email" type="email" placeholder="Email" required>
-        <input id="signup-pass" type="password" placeholder="Password" required>
-        <button type="submit" class="cta full">Create Account</button>
-      </form>
+        <!-- SIGNUP FORM -->
+        <form class="auth-form" id="signup-form" style="display:none;">
+          <input id="signup-name" name="full_name" type="text" placeholder="Full Name" required>
+          <input id="signup-email" name="email" type="email" placeholder="Email" required>
+          <input id="signup-pass" name="password" type="password" placeholder="Password" required>
+          <button type="submit" class="cta full">Create Account</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ⭐ POPUP SUCCESS MESSAGE -->
-<div id="popup-success" class="popup">
-  <div class="popup-box">
-    <p id="popup-text"></p>
-    <button id="popup-close" class="cta">OK</button>
+  <!-- POPUP -->
+  <div id="popup-success" class="popup">
+    <div class="popup-box">
+      <p id="popup-text"></p>
+      <button id="popup-close" class="cta">OK</button>
+    </div>
   </div>
-</div>
 
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="popup">
+    <div class="popup-box">
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <p id="cart-total">Total: ₱0</p>
+      <button id="checkout-btn" class="cta">Checkout</button>
+      <button id="close-cart" class="cta">Close</button>
+      <button id="payment-btn" class="cta">💳 Payment Options</button>
+    </div>
+  </div>
 
-<!-- MAIN WEBSITE (HIDDEN BEFORE LOGIN) -->
-<div id="main-content" style="display:none;">
-  <header>
-    <div class="nav-inner">
-      <div class="brand">
-        <img src="images/logo.jpg" class="logo">
-        <div>
-          <h1>Campus Market</h1>
-          <div class="sub">Buy • Sell • Campus Essentials</div>
+  <!-- MAIN WEBSITE AFTER LOGIN -->
+  <div id="main-content" style="display:none;">
+    <header>
+      <div class="nav-inner">
+        <div class="brand">
+          <img src="images/logo.jpg" class="logo">
+          <div>
+            <h1>Campus Market</h1>
+            <div class="sub">Buy • Sell • Campus Essentials</div>
+          </div>
+        </div>
+
+        <div class="searchbox">
+          <input id="main-search" placeholder="Search products...">
+          <button id="search-action">Search</button>
+        </div>
+
+        <div class="nav-actions">
+          <div class="pill username"></div>
+          <div class="pill" id="orders-btn">📦 Orders</div>
+          <div class="pill" id="cart-icon">🛒 <strong class="cart-count">0</strong></div>
+          <div class="pill">🔔 <strong class="notif">3</strong></div>
+          <div class="pill"><button id="logout-btn">Logout</button></div>
         </div>
       </div>
-      <div class="nav-actions">
-        <div class="pill username"></div>
-        <div class="pill"><button id="logout-btn">Logout</button></div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <div class="product-grid" id="product-grid"></div>
+    <!-- CATEGORY FILTER -->
+    <div class="category-container">
+      <button class="cat-btn active" data-category="all">All</button>
+      <button class="cat-btn" data-category="books">📚 Books</button>
+      <button class="cat-btn" data-category="gadgets">💻 Gadgets</button>
+      <button class="cat-btn" data-category="food">🍔 Food</button>
+      <button class="cat-btn" data-category="uniform">👕 Uniform</button>
+    </div>
+
+    <main class="container">
+      <!-- HERO SECTION -->
+      <section class="hero-wrap">
+        <div class="hero" style="background-image: url('images/school.jpg');">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <h2>Campus Deals & Essentials</h2>
+            <p>Find gadgets, textbooks & dorm essentials fast!</p>
+            <button class="cta">Shop Now</button>
+          </div>
+        </div>
+        <aside class="side-cards">
+  <div class="promo-card">
+    <h3>📘 50% Off Tools</h3>
+    <p>Grab before it’s gone!</p>
+  </div>
+  <div class="promo-card">
+    <h3>🎧 LAPTOP</h3>
+    <p>Student-friendly prices!</p>
+  </div>
+  <div class="promo-card">
+    <h3>🍔 Food Deals</h3>
+    <p>Budget-friendly snacks for students!</p>
+  </div>
+</aside>
+
+      </section>
+
+      <!-- PRODUCTS -->
+      <h2 class="title">🔥 Popular Products</h2>
+      <div class="product-grid" id="product-grid"></div>
+
+      <h2 class="title">🌟 Featured Deals</h2>
+      <div class="product-grid" id="featured-products"></div>
+
+      <h2 class="title">🧠 Suggested For You</h2>
+      <div class="product-grid" id="suggested-products"></div>
+
+      <h2 class="title">🆕 Newest Listings</h2>
+      <div class="product-grid" id="new-products"></div>
+
+      <!-- ADD PRODUCT BUTTON -->
+      <button id="open-add-product" class="cta add-product-btn">➕ Add Product</button>
+    </main>
+  </div>
+
+  <!-- ADD PRODUCT MODAL -->
+  <div class="popup" id="add-product-modal">
+    <div class="popup-box">
+      <h3>Add New Product</h3>
+      <input id="new-title" placeholder="Product Name" />
+      <input id="new-price" placeholder="Price (₱)" />
+      <input id="new-img" placeholder="Image URL" />
+      <select id="new-category">
+        <option value="books">Books</option>
+        <option value="gadgets">Gadgets</option>
+        <option value="food">Food</option>
+        <option value="uniform">Uniform</option>
+      </select>
+      <button id="save-product" class="cta">Save</button>
+      <button id="cancel-add" class="cta">Cancel</button>
+    </div>
+  </div>
+
+  <script src="MARKETPLACEscript.js"></script>
+
+  <!-- PAYMENT MODAL -->
+  <div class="popup" id="payment-modal">
+    <div class="popup-box">
+      <h3>💰 Mode of Payment</h3>
+      <p>GCash: 09xx-xxx-xxxx</p>
+      <p>Cash on Delivery: ✔ Available</p>
+      <p>Bank Transfer: BDO / BPI</p>
+      <button id="close-payment" class="cta">Close</button>
+    </div>
+  </div>
+
+  <!-- ORDERS MODAL -->
+<div class="popup" id="orders-modal">
+  <div class="popup-box" style="width: 380px;">
+    <h3>📦 Your Orders</h3>
+    <div id="orders-list"></div>
+    <button class="cta" id="close-orders">Close</button>
+  </div>
 </div>
 
 
-<!-- JS -->
+<!-- ANNOUNCEMENT MODAL -->
+<div class="popup" id="announcement-modal">
+  <div class="popup-box">
+    <h3>📢 Welcome to Campus Market!</h3>
+    <p>This platform allows students to:</p>
+    <ul style="text-align: left; font-size: 14px;"> 
+      <li>📚 Buy & sell tools</li>
+      <li>💻 Find affordable gadgets</li>
+      <li>🍔 Order food & snacks</li>
+      <li>👕 Sell school uniforms</li>
+      <li>🤝 Connect with other students</li>
+    </ul>
+    <p><strong>Powered by Students • Built for Students</strong></p>
+    <button class="cta" id="close-announcement">Close</button>
+  </div>
+</div>
+
 <script src="MARKETPLACEscript.js"></script>
+
 </body>
 </html>
